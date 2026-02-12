@@ -55,7 +55,7 @@ The `generated.mjs` file is automatically created and imported by `eventcatalog.
 
 ### Environment Variables Support
 
-YAML files support environment variables defined in your `.env` file. Use the `${VARIABLE_NAME}` syntax:
+YAML files support environment variables defined in your `.env` file. Use the `{{VARIABLE_NAME}}` syntax:
 
 ```yaml
 # .env
