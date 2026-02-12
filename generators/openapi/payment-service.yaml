@@ -1,0 +1,11 @@
+id: "payment-service"
+path: "{{ GITHUB_URL }}/generator-openapi/basic/openapi-files/payment-api.yml"
+
+headers:
+  Authorization: "{{ MY_BEARER_TOKEN }}"
+  X-Custom-Header: "custom-value"
+  
+domain:
+  id: "payment"
+  name: "Payment"
+  version: "0.0.1"

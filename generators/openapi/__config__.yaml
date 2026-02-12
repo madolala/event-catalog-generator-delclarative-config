@@ -1,0 +1,79 @@
+# Global configuration for OpenAPI generators
+# All options are listed in official documentation: 
+# → https://www.eventcatalog.dev/docs/plugins/openapi/plugin-configuration
+# These settings apply to all OpenAPI services unless overridden
+# Individual specs can override these settings if needed
+
+# ========================================
+# Debug & Parsing Options
+# ========================================
+
+# Enable debug mode to see detailed parsing information
+debug: false
+
+# Save the parsed specification file for debugging purposes
+# Useful when working with complex OpenAPI specs
+saveParsedSpecFile: false
+
+# Retain existing markdown content on regeneration
+# When true, preserves manual edits to generated message files
+preserveExistingMessages: true
+
+# ========================================
+# Badge & Display Configuration
+# ========================================
+
+# Badge type for messages in sidebar
+# "MESSAGE_TYPE" shows the semantic type (query, command)
+# "HTTP_METHOD" shows HTTP methods (GET, POST, etc.)
+sidebarBadgeType: "MESSAGE_TYPE"
+
+# ========================================
+# HTTP Method Mapping
+# ========================================
+
+# Map HTTP methods to EventCatalog message types
+# This determines semantic meaning and how operations are categorized
+httpMethodsToMessages:
+  GET: "query"      # Read operations - queries that return data
+  POST: "command"   # Create operations - commands that change state
+  PUT: "command"    # Update operations - commands that change state
+  PATCH: "command"  # Partial update - commands that change state
+  DELETE: "command" # Delete operations - commands that change state
+
+# ========================================
+# Default Domain Configuration
+# ========================================
+
+# Default domain assignment for all OpenAPI services
+# Can be overridden per service in individual YAML files
+domain:
+  id: "rest-api"
+  name: "REST API Domain"
+  version: "1.0.0"
+
+# ========================================
+# Message ID Configuration
+# ========================================
+
+# Configure how message IDs are generated from OpenAPI operations
+messages:
+  id:
+    # Add a prefix to all generated message IDs
+    # Example: "api" will create IDs like "api-getProducts"
+    # prefix: "api"
+
+    # Separator between prefix and ID (default: "-")
+    separator: "-"
+
+    # Prepend service ID to message IDs
+    # Example: true creates "product-api-getProducts"
+    prefixWithServiceId: false
+
+# ========================================
+# File Output Options
+# ========================================
+
+# Write generated files to root instead of service folders
+# Set to true to flatten the output structure
+writeFilesToRoot: false

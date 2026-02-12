@@ -1,0 +1,31 @@
+# EXAMPLE: Service with global config override
+# To use: copy this file to the openapi/ or asyncapi/ folder
+# and adapt the values to your API
+
+id: "example-service"
+path: "https://api.example.com/openapi.json"
+
+# Override: disable debug for this service only
+debug: false
+
+# Override: use HTTP_METHOD instead of MESSAGE_TYPE
+sidebarBadgeType: "HTTP_METHOD"
+
+# Service-specific config
+owners:
+  - "Platform Team"
+  - "API Team"
+
+headers:
+  Authorization: "Bearer YOUR_TOKEN_HERE"
+  X-Custom-Header: "custom-value"
+
+domain:
+  id: "example-domain"
+  name: "Example Domain"
+  version: "1.0.0"
+  draft: true
+
+# Additional properties
+summary: "This is an example service showing configuration override"
+name: "Example API Service"

@@ -1,0 +1,11 @@
+id: "order-history"
+path: "{{ GITHUB_URL }}/generator-openapi/basic/openapi-files/order-history.yml"
+
+headers:
+  Authorization: "{{ MY_BEARER_TOKEN }}"
+  X-Custom-Header: "custom-value"
+  
+domain:
+  id: "order-management"
+  name: "Order management"
+  version: "0.0.1"

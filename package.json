@@ -1,0 +1,24 @@
+{
+  "name": "my-catalog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "eventcatalog dev",
+    "build": "eventcatalog build",
+    "start": "eventcatalog start",
+    "preview": "eventcatalog preview",
+    "generate": "eventcatalog generate",
+    "generate:config": "node generators/generate.js",
+    "pregenerate": "npm run generate:config",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@eventcatalog/core": "^3.12.8",
+    "@eventcatalog/generator-asyncapi": "^5.4.1",
+    "@eventcatalog/generator-openapi": "^7.7.1"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "js-yaml": "^4.1.1"
+  }
+}

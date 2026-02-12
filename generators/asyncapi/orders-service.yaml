@@ -1,0 +1,11 @@
+id: "Orders Service"
+path: "{{ GITHUB_URL }}/generator-asyncapi/basic/asyncapi-files/orders-service.yml"
+
+headers:
+  Authorization: "{{ MY_BEARER_TOKEN }}"
+  X-Custom-Header: "custom-value"
+  
+domain:
+  id: "orders"
+  name: "Orders"
+  version: "0.0.1"

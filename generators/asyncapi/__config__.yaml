@@ -1,0 +1,65 @@
+# Global configuration for AsyncAPI generators
+# All options are listed in official documentation: 
+# → https://www.eventcatalog.dev/docs/plugins/asyncapi/plugin-configuration
+# These settings apply to all AsyncAPI services unless overridden
+# Individual specs can override these settings if needed
+
+# ========================================
+# Debug & Parsing Options
+# ========================================
+
+# Enable debug mode to see detailed parsing information
+debug: false
+
+# Save the parsed specification file for debugging purposes
+# Helpful when working with files that use $refs
+saveParsedSpecFile: false
+
+# Parse schemas from the AsyncAPI specification into EventCatalog events
+# Set to false if you only want to document services without their messages
+parseSchemas: true
+
+# Parse channels from the AsyncAPI specification into EventCatalog channel resources
+# Set to true if you want to generate separate channel documentation
+parseChannels: false
+
+# ========================================
+# Default Domain Configuration
+# ========================================
+
+# Default domain assignment for all AsyncAPI services
+# Can be overridden per service in individual YAML files
+domain:
+  id: "messaging"
+  name: "Messaging Domain"
+  version: "1.0.0"
+
+# ========================================
+# Message ID Configuration
+# ========================================
+
+# Configure how message IDs are generated
+messages:
+  id:
+    # Add a prefix to all generated message IDs
+    # Example: "msg" will create IDs like "msg-OrderCreated"
+    # prefix: "msg"
+
+    # Separator between prefix and ID (default: "-")
+    separator: "-"
+
+    # Prepend service ID to message IDs
+    # Example: true creates "payment-service-PaymentProcessed"
+    prefixWithServiceId: false
+
+    # Convert message IDs to lowercase
+    # Example: true converts "OrderCreated" to "ordercreated"
+    lowerCase: false
+
+# ========================================
+# File Output Options
+# ========================================
+
+# Write generated files to root instead of service folders
+# Set to true to flatten the output structure
+writeFilesToRoot: false

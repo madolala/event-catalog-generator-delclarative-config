@@ -1,0 +1,198 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EventCatalog AsyncAPI Plugin Configuration",
+  "description": "JSON Schema for EventCatalog AsyncAPI plugin configuration",
+  "definitions": {
+    "service": {
+      "type": "object",
+      "required": ["id", "path"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "EventCatalog ID for the service"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path to your AsyncAPI file or remote URL"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name; defaults to specification value (v4.5.3+)"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Short description; defaults to specification value (v4.5.3+)"
+        },
+        "owners": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Assign EventCatalog users or teams"
+        },
+        "writesTo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string" },
+              "version": { "type": "string" }
+            }
+          },
+          "description": "Data store associations"
+        },
+        "readsFrom": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string" },
+              "version": { "type": "string" }
+            }
+          },
+          "description": "Data store associations"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "HTTP headers for authenticated remote URLs"
+        }
+      }
+    },
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Domain identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Domain display name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Domain version"
+        },
+        "owners": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Domain ownership assignments"
+        }
+      }
+    },
+    "messages": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "prefix": {
+              "type": "string",
+              "description": "Prefix for generated message IDs"
+            },
+            "separator": {
+              "type": "string",
+              "description": "Prefix/ID separator",
+              "default": "-"
+            },
+            "prefixWithServiceId": {
+              "type": "boolean",
+              "description": "Prepend service ID to messages"
+            },
+            "lowerCase": {
+              "type": "boolean",
+              "description": "Converts message IDs and folders to lowercase",
+              "default": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "debug": {
+      "type": "boolean",
+      "description": "Enable detailed logging",
+      "default": false
+    },
+    "domain": {
+      "$ref": "#/definitions/domain"
+    },
+    "messages": {
+      "$ref": "#/definitions/messages"
+    },
+    "writeFilesToRoot": {
+      "type": "boolean",
+      "description": "Write to root instead of service folders",
+      "default": false
+    },
+    "saveParsedSpecFile": {
+      "type": "boolean",
+      "description": "Parse and save expanded AsyncAPI spec (helpful for files with $refs)",
+      "default": false
+    },
+    "parseSchemas": {
+      "type": "boolean",
+      "description": "Parses message schemas when using parsed spec files",
+      "default": true
+    },
+    "parseChannels": {
+      "type": "boolean",
+      "description": "Generates channel resources in EventCatalog",
+      "default": false
+    },
+    "id": {
+      "type": "string",
+      "description": "Service ID (used in service-specific config)"
+    },
+    "path": {
+      "type": "string",
+      "description": "Path to AsyncAPI file (used in service-specific config)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Service name (used in service-specific config)"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Service summary (used in service-specific config)"
+    },
+    "owners": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Service owners (used in service-specific config)"
+    },
+    "writesTo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "version": { "type": "string" }
+        }
+      }
+    },
+    "readsFrom": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "version": { "type": "string" }
+        }
+      }
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

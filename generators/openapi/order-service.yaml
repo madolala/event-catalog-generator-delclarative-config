@@ -1,0 +1,30 @@
+id: "order-service"
+path: "{{ GITHUB_URL }}/generator-openapi/basic/openapi-files/order-api.yml"
+
+headers:
+  Authorization: "{{ MY_BEARER_TOKEN }}"
+  X-Custom-Header: "custom-value"
+  
+# Domain assignment
+domain:
+  id: "order-management"
+  name: "Order management"
+  version: "0.0.1"
+
+# ========================================
+# Configuration Overrides
+# Minimal config: only override what's needed for this specific service
+# ========================================
+
+# Custom HTTP method mapping for order operations
+# Treat GET as query but all others as events (not commands)
+httpMethodsToMessages:
+  GET: "query"
+  POST: "event"
+  PUT: "event"
+  PATCH: "event"
+  DELETE: "event"
+
+# Use message types instead of HTTP methods in the sidebar
+# This emphasizes the semantic meaning over the technical method
+sidebarBadgeType: "MESSAGE_TYPE"

@@ -1,0 +1,219 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EventCatalog OpenAPI Plugin Configuration",
+  "description": "JSON Schema for EventCatalog OpenAPI plugin configuration",
+  "definitions": {
+    "service": {
+      "type": "object",
+      "required": ["id", "path"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "EventCatalog ID for the service"
+        },
+        "path": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ],
+          "description": "Path/s to your OpenAPI file or remote URL to the OpenAPI file"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name; defaults to specification value (v7.4.3+)"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Short description; defaults to specification value (v7.4.3+)"
+        },
+        "owners": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Assign EventCatalog users or teams"
+        },
+        "setMessageOwnersToServiceOwners": {
+          "type": "boolean",
+          "description": "Defaults to true; propagates service ownership"
+        },
+        "draft": {
+          "type": "boolean",
+          "description": "Draft service and endpoints in catalog (v7.3.0+)"
+        },
+        "writesTo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string" },
+              "version": { "type": "string" }
+            }
+          },
+          "description": "Data store associations (v7.5.0+)"
+        },
+        "readsFrom": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string" },
+              "version": { "type": "string" }
+            }
+          },
+          "description": "Data store associations (v7.5.0+)"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "HTTP headers for authenticated remote URLs"
+        }
+      }
+    },
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Domain identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Domain display name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Domain version"
+        },
+        "draft": {
+          "type": "boolean",
+          "description": "Draft domain with services (v7.3.0+)"
+        }
+      }
+    },
+    "messages": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "prefix": {
+              "type": "string",
+              "description": "Prefix for generated message IDs (v7.4.1+)"
+            },
+            "separator": {
+              "type": "string",
+              "description": "Prefix/ID separator (v7.4.1+)",
+              "default": "-"
+            },
+            "prefixWithServiceId": {
+              "type": "boolean",
+              "description": "Prepend service ID to messages (v7.4.1+)"
+            }
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "debug": {
+      "type": "boolean",
+      "description": "Enable detailed logging"
+    },
+    "domain": {
+      "$ref": "#/definitions/domain"
+    },
+    "messages": {
+      "$ref": "#/definitions/messages"
+    },
+    "writeFilesToRoot": {
+      "type": "boolean",
+      "description": "Write to root instead of service folders",
+      "default": false
+    },
+    "saveParsedSpecFile": {
+      "type": "boolean",
+      "description": "Save expanded OpenAPI spec",
+      "default": false
+    },
+    "sidebarBadgeType": {
+      "type": "string",
+      "enum": ["HTTP_METHOD", "MESSAGE_TYPE"],
+      "description": "Badge display type (v5.0.1+)",
+      "default": "HTTP_METHOD"
+    },
+    "httpMethodsToMessages": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Map HTTP methods to message types (v5.0.2+)"
+    },
+    "preserveExistingMessages": {
+      "type": "boolean",
+      "description": "Retain existing markdown on regeneration (v5.0.5+)",
+      "default": true
+    },
+    "id": {
+      "type": "string",
+      "description": "Service ID (used in service-specific config)"
+    },
+    "path": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ],
+      "description": "Path to OpenAPI file (used in service-specific config)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Service name (used in service-specific config)"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Service summary (used in service-specific config)"
+    },
+    "owners": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Service owners (used in service-specific config)"
+    },
+    "setMessageOwnersToServiceOwners": {
+      "type": "boolean",
+      "description": "Propagate service ownership"
+    },
+    "draft": {
+      "type": "boolean",
+      "description": "Draft flag"
+    },
+    "writesTo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "version": { "type": "string" }
+        }
+      }
+    },
+    "readsFrom": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "version": { "type": "string" }
+        }
+      }
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

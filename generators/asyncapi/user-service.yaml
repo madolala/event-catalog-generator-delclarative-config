@@ -1,0 +1,12 @@
+id: "User Service"
+path: "{{ GITHUB_URL }}/generator-asyncapi/basic/asyncapi-files/user-service.yml"
+
+headers:
+  Authorization: "{{ MY_BEARER_TOKEN }}"
+  X-Custom-Header: "custom-value"
+  
+domain:
+  id: "user-domain"
+  name: "User Domain"
+  version: "0.0.1"
+debug: true

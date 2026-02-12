@@ -1,0 +1,38 @@
+# EXAMPLE: AsyncAPI Service with global config override
+# To use: copy this file to the asyncapi/ folder
+# and adapt the values to your API
+
+id: "example-async-service"
+path: "https://api.example.com/asyncapi.json"
+
+# Override: enable debug for this service only
+debug: true
+
+# Override: enable channel parsing
+parseChannels: true
+
+# Service-specific config
+owners:
+  - "Integration Team"
+  - "Event Team"
+
+headers:
+  Authorization: "Bearer YOUR_TOKEN_HERE"
+  X-Custom-Header: "custom-value"
+
+domain:
+  id: "example-domain"
+  name: "Example Domain"
+  version: "1.0.0"
+
+# Additional properties
+summary: "This is an example AsyncAPI service showing configuration override"
+name: "Example AsyncAPI Service"
+
+# Data store associations (optional)
+writesTo:
+  - id: "example-datastore"
+    version: "1.0.0"
+readsFrom:
+  - id: "source-datastore"
+    version: "1.0.0"

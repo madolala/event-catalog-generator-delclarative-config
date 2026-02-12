@@ -1,0 +1,38 @@
+id: "Fraud Detection"
+path: "{{ GITHUB_URL }}/generator-asyncapi/basic/asyncapi-files/fraud-detection-service.yml"
+
+headers:
+  Authorization: "{{ MY_BEARER_TOKEN }}"
+  X-Custom-Header: "custom-value"
+
+# Domain assignment (overrides global config)
+domain:
+  id: "payment"
+  name: "Payment"
+  version: "0.0.1"
+
+# Service-specific owners
+owners:
+  - "dboyne"
+  - "security-team"
+
+# ========================================
+# Configuration Overrides
+# These settings override the global __config__.yaml for this specific service
+# ========================================
+
+# Enable debug for this service only (useful for troubleshooting)
+debug: true
+
+# Save parsed spec to help debug complex schemas with $refs
+saveParsedSpecFile: true
+
+# Custom message ID configuration for fraud detection events
+messages:
+  id:
+    # Prefix all fraud detection messages with "fraud"
+    # Example: "fraud-SuspiciousActivityDetected"
+    prefix: "fraud"
+    separator: "-"
+    # Keep original casing for clarity
+    lowerCase: false

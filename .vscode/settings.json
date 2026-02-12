@@ -1,0 +1,23 @@
+{
+  // YAML Language Server - Schema associations
+  "yaml.schemas": {
+    // OpenAPI generator configs
+    "./generators/schemas/openapi-config.schema.json": [
+      "generators/openapi/__config__.yaml",
+      "generators/openapi/*.yaml",
+      "generators/EXAMPLE-openapi-service.yaml"
+    ],
+    // AsyncAPI generator configs
+    "./generators/schemas/asyncapi-config.schema.json": [
+      "generators/asyncapi/__config__.yaml",
+      "generators/asyncapi/*.yaml",
+      "generators/EXAMPLE-asyncapi-service.yaml"
+    ]
+  },
+
+  // Enable validation
+  "yaml.validate": true,
+
+  // Custom tags (if needed)
+  "yaml.customTags": []
+}

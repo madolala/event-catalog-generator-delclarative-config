@@ -1,0 +1,38 @@
+id: "product-api"
+path: "{{ GITHUB_URL }}/generator-openapi/basic/openapi-files/product-api.yml"
+
+headers:
+  Authorization: "{{ MY_BEARER_TOKEN }}"
+  X-Custom-Header: "custom-value"
+  
+# Domain assignment (overrides global config)
+domain:
+  id: "products"
+  name: "Products"
+  version: "0.0.1"
+
+# Service-specific owners
+owners:
+  - "dboyne"
+  - "product-team"
+
+# ========================================
+# Configuration Overrides
+# These settings override the global __config__.yaml for this specific API
+# ========================================
+
+# Show HTTP methods instead of message types for this API
+# This makes the sidebar show "GET", "POST" instead of "query", "command"
+sidebarBadgeType: "HTTP_METHOD"
+
+# Custom message ID configuration
+messages:
+  id:
+    # Prefix all operations with the service ID
+    # Result: "product-api.getProducts", "product-api.createProduct"
+    prefixWithServiceId: true
+    separator: "."
+
+# Don't preserve existing messages - always regenerate fresh
+# Set to false if you want to overwrite manual edits on each generation
+preserveExistingMessages: false

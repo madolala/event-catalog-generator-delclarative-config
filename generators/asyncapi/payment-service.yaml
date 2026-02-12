@@ -1,0 +1,36 @@
+id: "Payment Service"
+path: "{{ GITHUB_URL }}/generator-asyncapi/basic/asyncapi-files/payment-service.yml"
+
+headers:
+  Authorization: "{{ MY_BEARER_TOKEN }}"
+  X-Custom-Header: "custom-value"
+  
+# Domain assignment
+domain:
+  id: "payment"
+  name: "Payment"
+  version: "0.0.1"
+
+# Service owners
+owners:
+  - "payment-team"
+
+# ========================================
+# Configuration Overrides
+# Example of enabling channel parsing for this service
+# ========================================
+
+# Parse channels to generate separate channel documentation
+# This is useful when you want to document message brokers topics/queues
+parseChannels: true
+
+# Write files to root for easier access to payment-related docs
+writeFilesToRoot: false
+
+# Custom message ID format for payment messages
+messages:
+  id:
+    # All payment messages will be lowercase with "pay" prefix
+    # Example: "pay-paymentprocessed", "pay-refundinitiated"
+    prefix: "pay"
+    lowerCase: true
