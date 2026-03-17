@@ -1,4 +1,8 @@
-import generators from './generators/generated.mjs';
+import { resolve } from 'path';
+
+// Import generators using process.cwd() which points to the original working directory
+const generatorsModule = await import(resolve(process.cwd(), 'generators', 'generated.mjs'));
+const generators = generatorsModule.default;
 
 /** @type {import('@eventcatalog/core/bin/eventcatalog.config').Config} */
 export default {
